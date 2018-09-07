@@ -24,7 +24,7 @@ class Test
 
         FileInfo outputFilePath = new FileInfo(outputDirectory);
 
-        ReadReport(className, filePath, outputFilePath, outputDirectory);
+        ReadReport(filePath, outputFilePath, outputDirectory);
 
         Console.WriteLine("Your barcode report is now ready and available in {0}", outputDirectory);
         Console.WriteLine("Press any key to end the program.");
@@ -33,7 +33,7 @@ class Test
         Console.Read();
     }
 
-    public static void ReadReport(string className, string reportPath, FileInfo outputDirectory, string outputString)
+    public static void ReadReport(string reportPath, FileInfo outputDirectory, string outputString)
     {
 
         List<string> usersList = new List<string>();
@@ -52,7 +52,7 @@ class Test
 
                     foreach (string data in splitUser)
                     {
-                        string cleanedString = System.Text.RegularExpressions.Regex.Replace(data, @"\s{2,}", " ");
+                        string cleanedString = System.Text.RegularExpressions.Regex.Replace(data, @"\s{2,}", "");
                         usersList.Add(cleanedString);
                         Console.WriteLine(data);
                     }
@@ -183,49 +183,176 @@ class Test
 
             //---------------------------------------
 
-            ws.Cells["A25"].Style.Font.Size = 30;
-            ws.Cells["A25"].Style.Font.Name = "Free 3 of 9 Extended";
-            ws.Cells["A25"].Value = usersList[39];
-            ws.Cells["A26"].Value = usersList[40];
-            ws.Cells["A27"].Value = usersList[41];
+            ws.Cells["A27"].Style.Font.Size = 30;
+            ws.Cells["A27"].Style.Font.Name = "Free 3 of 9 Extended";
+            ws.Cells["A27"].Value = usersList[39];
+            ws.Cells["A28"].Value = usersList[40];
+            ws.Cells["A29"].Value = usersList[41];
 
-            ws.Cells["B25"].Style.Font.Size = 30;
-            ws.Cells["B25"].Style.Font.Name = "Free 3 of 9 Extended";
-            ws.Cells["B25"].Value = usersList[42];
-            ws.Cells["B26"].Value = usersList[43];
-            ws.Cells["B27"].Value = usersList[44];
+            ws.Cells["B27"].Style.Font.Size = 30;
+            ws.Cells["B27"].Style.Font.Name = "Free 3 of 9 Extended";
+            ws.Cells["B27"].Value = usersList[42];
+            ws.Cells["B28"].Value = usersList[43];
+            ws.Cells["B29"].Value = usersList[44];
 
-            ws.Cells["C25"].Style.Font.Size = 30;
-            ws.Cells["C25"].Style.Font.Name = "Free 3 of 9 Extended";
-            ws.Cells["C25"].Value = usersList[45];
-            ws.Cells["C26"].Value = usersList[46];
-            ws.Cells["C27"].Value = usersList[47];
-
-            //---------------------------------------
-
-            ws.Cells["A30"].Style.Font.Size = 30;
-            ws.Cells["A30"].Style.Font.Name = "Free 3 of 9 Extended";
-            ws.Cells["A30"].Value = usersList[48];
-            ws.Cells["A31"].Value = usersList[49];
-            ws.Cells["A32"].Value = usersList[50];
-
-            ws.Cells["B30"].Style.Font.Size = 30;
-            ws.Cells["B30"].Style.Font.Name = "Free 3 of 9 Extended";
-            ws.Cells["B30"].Value = usersList[51];
-            ws.Cells["B31"].Value = usersList[52];
-            ws.Cells["B32"].Value = usersList[53];
-
-            ws.Cells["C30"].Style.Font.Size = 30;
-            ws.Cells["C30"].Style.Font.Name = "Free 3 of 9 Extended";
-            ws.Cells["C30"].Value = usersList[54];
-            ws.Cells["C31"].Value = usersList[55];
-            ws.Cells["C32"].Value = usersList[56];
+            ws.Cells["C27"].Style.Font.Size = 30;
+            ws.Cells["C27"].Style.Font.Name = "Free 3 of 9 Extended";
+            ws.Cells["C27"].Value = usersList[45];
+            ws.Cells["C28"].Value = usersList[46];
+            ws.Cells["C29"].Value = usersList[47];
 
             //---------------------------------------
 
+            ws.Cells["A32"].Style.Font.Size = 30;
+            ws.Cells["A32"].Style.Font.Name = "Free 3 of 9 Extended";
+            ws.Cells["A32"].Value = usersList[48];
+            ws.Cells["A33"].Value = usersList[49];
+            ws.Cells["A34"].Value = usersList[50];
+
+            ws.Cells["B32"].Style.Font.Size = 30;
+            ws.Cells["B32"].Style.Font.Name = "Free 3 of 9 Extended";
+            ws.Cells["B32"].Value = usersList[51];
+            ws.Cells["B33"].Value = usersList[52];
+            ws.Cells["B34"].Value = usersList[53];
+
+            ws.Cells["C32"].Style.Font.Size = 30;
+            ws.Cells["C32"].Style.Font.Name = "Free 3 of 9 Extended";
+            ws.Cells["C32"].Value = usersList[54];
+            ws.Cells["C33"].Value = usersList[55];
+            ws.Cells["C34"].Value = usersList[56];
+
+            //---------------------------------------
+
+            ws.Cells["A37"].Style.Font.Size = 30;
+            ws.Cells["A37"].Style.Font.Name = "Free 3 of 9 Extended";
+            ws.Cells["A37"].Value = usersList[57];
+            ws.Cells["A38"].Value = usersList[58];
+            ws.Cells["A39"].Value = usersList[59];
+
+            ws.Cells["B37"].Style.Font.Size = 30;
+            ws.Cells["B37"].Style.Font.Name = "Free 3 of 9 Extended";
+            ws.Cells["B37"].Value = usersList[60];
+            ws.Cells["B38"].Value = usersList[61];
+            ws.Cells["B39"].Value = usersList[62];
+
+            ws.Cells["C37"].Style.Font.Size = 30;
+            ws.Cells["C37"].Style.Font.Name = "Free 3 of 9 Extended";
+            ws.Cells["C37"].Value = usersList[63];
+            ws.Cells["C38"].Value = usersList[64];
+            ws.Cells["C39"].Value = usersList[65];
+
+            //---------------------------------------
+            ws.Cells["A42"].Style.Font.Size = 30;
+            ws.Cells["A42"].Style.Font.Name = "Free 3 of 9 Extended";
+            ws.Cells["A42"].Value = usersList[66];
+            ws.Cells["A43"].Value = usersList[67];
+            ws.Cells["A44"].Value = usersList[68];
+
+            ws.Cells["B42"].Style.Font.Size = 30;
+            ws.Cells["B42"].Style.Font.Name = "Free 3 of 9 Extended";
+            ws.Cells["B42"].Value = usersList[69];
+            ws.Cells["B43"].Value = usersList[70];
+            ws.Cells["B44"].Value = usersList[71];
+
+            ws.Cells["C42"].Style.Font.Size = 30;
+            ws.Cells["C42"].Style.Font.Name = "Free 3 of 9 Extended";
+            ws.Cells["C42"].Value = usersList[71];
+            ws.Cells["C43"].Value = usersList[72];
+            ws.Cells["C44"].Value = usersList[73];
+
+            //---------------------------------------
+
+            ws.Cells["A47"].Style.Font.Size = 30;
+            ws.Cells["A47"].Style.Font.Name = "Free 3 of 9 Extended";
+            ws.Cells["A47"].Value = usersList[74];
+            ws.Cells["A48"].Value = usersList[75];
+            ws.Cells["A49"].Value = usersList[76];
+
+            ws.Cells["B47"].Style.Font.Size = 30;
+            ws.Cells["B47"].Style.Font.Name = "Free 3 of 9 Extended";
+            ws.Cells["B47"].Value = usersList[77];
+            ws.Cells["B48"].Value = usersList[78];
+            ws.Cells["B49"].Value = usersList[79];
+
+            ws.Cells["C47"].Style.Font.Size = 30;
+            ws.Cells["C47"].Style.Font.Name = "Free 3 of 9 Extended";
+            ws.Cells["C47"].Value = usersList[80];
+            ws.Cells["C48"].Value = usersList[81];
+            ws.Cells["C49"].Value = usersList[82];
+
+            //---------------------------------------
+
+            ws.Cells["A52"].Style.Font.Size = 30;
+            ws.Cells["A52"].Style.Font.Name = "Free 3 of 9 Extended";
+            ws.Cells["A52"].Value = usersList[83];
+            ws.Cells["A53"].Value = usersList[84];
+            ws.Cells["A54"].Value = usersList[85];
+
+            ws.Cells["B52"].Style.Font.Size = 30;
+            ws.Cells["B52"].Style.Font.Name = "Free 3 of 9 Extended";
+            ws.Cells["B52"].Value = usersList[86];
+            ws.Cells["B53"].Value = usersList[87];
+            ws.Cells["B54"].Value = usersList[88];
+
+            ws.Cells["C52"].Style.Font.Size = 30;
+            ws.Cells["C52"].Style.Font.Name = "Free 3 of 9 Extended";
+            ws.Cells["C52"].Value = usersList[89];
+            ws.Cells["C53"].Value = usersList[90];
+            ws.Cells["C54"].Value = usersList[91];
+
+            //---------------------------------------
+
+            ws.Cells["A57"].Style.Font.Size = 30;
+            ws.Cells["A57"].Style.Font.Name = "Free 3 of 9 Extended";
+            ws.Cells["A57"].Value = usersList[92];
+            ws.Cells["A58"].Value = usersList[93];
+            ws.Cells["A59"].Value = usersList[94];
+
+            ws.Cells["B57"].Style.Font.Size = 30;
+            ws.Cells["B57"].Style.Font.Name = "Free 3 of 9 Extended";
+            ws.Cells["B57"].Value = usersList[95];
+            ws.Cells["B58"].Value = usersList[96];
+            ws.Cells["B59"].Value = usersList[97];
+
+            ws.Cells["C57"].Style.Font.Size = 30;
+            ws.Cells["C57"].Style.Font.Name = "Free 3 of 9 Extended";
+            ws.Cells["C57"].Value = usersList[98];
+            ws.Cells["C58"].Value = usersList[99];
+            ws.Cells["C59"].Value = usersList[100];
+
+            //---------------------------------------
+
+            ws.Cells["A62"].Style.Font.Size = 30;
+            ws.Cells["A62"].Style.Font.Name = "Free 3 of 9 Extended";
+            ws.Cells["A62"].Value = usersList[101];
+            ws.Cells["A63"].Value = usersList[102];
+            ws.Cells["A64"].Value = usersList[103];
+
+            ws.Cells["B62"].Style.Font.Size = 30;
+            ws.Cells["B62"].Style.Font.Name = "Free 3 of 9 Extended";
+            ws.Cells["B62"].Value = usersList[104];
+            ws.Cells["B63"].Value = usersList[105];
+            ws.Cells["B64"].Value = usersList[106];
+
+            ws.Cells["C62"].Style.Font.Size = 30;
+            ws.Cells["C62"].Style.Font.Name = "Free 3 of 9 Extended";
+            ws.Cells["C62"].Value = usersList[107];
+            ws.Cells["C63"].Value = usersList[108];
+            ws.Cells["C64"].Value = usersList[109];
+
+            //---------------------------------------
 
 
 
+            //---------------------------------------
+
+
+
+            //---------------------------------------
+
+
+
+            //---------------------------------------
 
             excel.Save();
             Console.WriteLine("File has been saved to the specified directory.");
