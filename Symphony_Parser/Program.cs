@@ -90,7 +90,9 @@ class Test
             int allowDown = 0;
 
 
-            for (int row = 1; row < usersList.Count;) //now increments downwards and sideways constantly
+            for (int row = 1; row < usersList.Count;) //Error will constantly write in the three columns but will then
+                                                      //increment downwards once and to the right once then repeats
+                                                      //
             {
 
 
