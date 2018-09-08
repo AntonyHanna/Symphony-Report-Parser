@@ -55,7 +55,7 @@ class Test
 
                     foreach (string data in splitUser)
                     {
-                        string cleanedString = System.Text.RegularExpressions.Regex.Replace(data, @"\s{2,}", " ");
+                        string cleanedString = System.Text.RegularExpressions.Regex.Replace(data, @"\s{2,}", "");
                         usersList.Add(cleanedString);
                         Console.WriteLine(data);
                     }
@@ -82,6 +82,7 @@ class Test
             ws.Column(2).Width = 30.00;
             ws.Column(3).Width = 30.00;
             ws.Cells["A1:Z150"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+
 
             //Write Data to Excel function here
             
@@ -113,8 +114,11 @@ class Test
                 rowCounter++;
                 
             }
-            
 
+            catch
+            {
+                Console.WriteLine("{0} entry(s) written!",usersList.Count);
+            }
 
             excel.SaveAs(outputDirectory);
             Console.WriteLine("File has been saved to the specified directory.");
