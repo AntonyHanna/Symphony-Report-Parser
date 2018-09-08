@@ -115,11 +115,6 @@ class Test
                 
             }
 
-            catch
-            {
-                Console.WriteLine("{0} entry(s) written!",usersList.Count);
-            }
-
             excel.SaveAs(outputDirectory);
             Console.WriteLine("File has been saved to the specified directory.");
         }
