@@ -33,7 +33,6 @@ class Test
         Console.WriteLine("Press any key to end the program.");
         Whitespace();
 
-        Console.Read();
     }
 
     public static void ReadReport(string reportPath, FileInfo outputDirectory, string outputString)
@@ -78,18 +77,18 @@ class Test
             Console.WriteLine("Users are being written to file.");
 
             //Page Formatting
-            ws.Column(1).Width = 30.00;
-            ws.Column(2).Width = 30.00;
-            ws.Column(3).Width = 30.00;
-            ws.Cells["A1:Z150"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
+            ws.Column(1).Width = 29.00;
+            ws.Column(2).Width = 29.00;
+            ws.Column(3).Width = 29.00;
+            ws.Cells["A:Z"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
 
 
-            //Write Data to Excel function here
+            //Function for Automatically writing data to an excel file
             int idRow = 1; //Row in which the user ID is contained
-            int rowCounter = 1;
-            int colCounter = 1;
-            int Column = 1;
-            int Row = 1;
+            int rowCounter = 1; //Keeps track of how many times the row has been incremented
+            int colCounter = 1; ////Keeps track of how many times the column has been incremented
+            int Column = 1; //Current Column
+            int Row = 1; //Current Row
            
             foreach(string data in usersList)
             {
@@ -100,7 +99,6 @@ class Test
                     Column++;
                     colCounter++;
                 }
-
                 
                 if(colCounter == 4)
                 {
@@ -109,18 +107,20 @@ class Test
                     Row = Row+4;
                 }
 
-
                 ws.Row(idRow).Style.Font.Size = 30;
                 ws.Row(idRow).Style.Font.Name = "Free 3 of 9 Extended";
                 ws.Cells[Row, Column].Value = data;
                 Row++;
                 rowCounter++;
                 idRow = idRow + 4;
-
             }
 
+            Whitespace();
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine("{0} user(s) written to file.",usersList.Count/3);
+            Console.ForegroundColor = ConsoleColor.Black;
+
             excel.SaveAs(outputDirectory);
-            Console.WriteLine("File has been saved to the specified directory.");
         }
     }
 
