@@ -83,54 +83,37 @@ class Test
             ws.Column(3).Width = 30.00;
             ws.Cells["A1:Z150"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
 
-
-            int column = 1; //Whats used as the row identifier
-            int columnCounter = 0;
-            int dataInt = 0;
-            int allowDown = 0;
-
-
-            for (int row = 1; row < usersList.Count;) //Error will constantly write in the three columns but will then
-                                                      //increment downwards once and to the right once then repeats
-                                                      //
-            {
-
-
-                if (columnCounter >= 3 && row <= usersList.Count)
-                {
-                    
-                    column++;
-                    columnCounter = 0;
-                }
-
-                if (allowDown >= 9 && row <= usersList.Count)
-                    {
-                        allowDown = 0;
-                        row++;
-
-                    }
-
-
-             
-                try
-                {
-                    ws.Cells[row, column].Value = usersList[dataInt];
-                }
-
-                catch(Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
-                }
+            //Write Data to Excel function here
             
-
-                allowDown++;
-                columnCounter++;
-                dataInt++;
-
-            }
-
+            int rowCounter = 1;
+            int colCounter = 1;
+            int Column = 1;
+            int Row = 1;
            
+            foreach(string data in usersList)
+            {
+                if (rowCounter == 4)
+                {
+                    Row = Row - 3; 
+                    rowCounter = 1; 
+                    Column++;
+                    colCounter++;
+                }
 
+                
+                if(colCounter == 4)
+                {
+                    colCounter = 1;
+                    Column = 1;
+                    Row = Row+4;
+                }
+
+                ws.Cells[Row, Column].Value = data;
+                Row++;
+                rowCounter++;
+                
+            }
+            
 
 
             excel.SaveAs(outputDirectory);
