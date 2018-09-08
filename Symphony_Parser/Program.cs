@@ -85,7 +85,7 @@ class Test
 
 
             //Write Data to Excel function here
-            
+            int idRow = 1; //Row in which the user ID is contained
             int rowCounter = 1;
             int colCounter = 1;
             int Column = 1;
@@ -109,10 +109,14 @@ class Test
                     Row = Row+4;
                 }
 
+
+                ws.Row(idRow).Style.Font.Size = 30;
+                ws.Row(idRow).Style.Font.Name = "Free 3 of 9 Extended";
                 ws.Cells[Row, Column].Value = data;
                 Row++;
                 rowCounter++;
-                
+                idRow = idRow + 4;
+
             }
 
             excel.SaveAs(outputDirectory);
