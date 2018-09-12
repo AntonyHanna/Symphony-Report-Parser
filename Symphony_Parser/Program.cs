@@ -25,7 +25,7 @@ class Test
 
         FileInfo outputFilePath = new FileInfo(outputDirectory);
 
-        ReadReport(filePath, outputFilePath, outputDirectory);
+        ReadReport(filePath, outputFilePath, outputDirectory, className);
 
         Console.WriteLine("Your barcode report is now ready and available in:");
         Console.WriteLine(outputDirectory);
@@ -35,7 +35,7 @@ class Test
 
     }
 
-    public static void ReadReport(string reportPath, FileInfo outputDirectory, string outputString)
+    public static void ReadReport(string reportPath, FileInfo outputDirectory, string outputString, string className)
     {
 
         List<string> usersList = new List<string>();
@@ -63,13 +63,14 @@ class Test
             Console.WriteLine("Data has been read!");
 
         }
+        FileExists(outputDirectory, outputString);
+        WriteToFile(outputDirectory, usersList, className);
 
-        WriteToFile(outputDirectory, usersList, outputString);
     }
 
-    public static void WriteToFile(FileInfo outputDirectory, List<string> usersList, string outputString)
+    public static void WriteToFile(FileInfo outputDirectory, List<string> usersList, string className)
     {
-        FileExists(outputDirectory, outputString);
+
         using (ExcelPackage excel = new ExcelPackage(outputDirectory))
         {
             Console.WriteLine("File is being created.");
@@ -77,9 +78,9 @@ class Test
             Console.WriteLine("Users are being written to file.");
 
             //Page Formatting
-            ws.Column(1).Width = 29.00;
-            ws.Column(2).Width = 29.00;
-            ws.Column(3).Width = 29.00;
+            ws.Column(1).Width = 26.50;
+            ws.Column(2).Width = 26.50;
+            ws.Column(3).Width = 26.50;
             ws.Cells["A:Z"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
 
 
@@ -118,10 +119,58 @@ class Test
             Whitespace();
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("{0} user(s) written to file.",usersList.Count/3);
-            Console.ForegroundColor = ConsoleColor.Black;
+            Console.ForegroundColor = ConsoleColor.White;
+
+            fitPageBreakToPage(ws, usersList);
+            AddPageHeaders(ws, className);
+            HeaderContentGap(ws, usersList);
+            WorkSheetProperties(ws);
 
             excel.SaveAs(outputDirectory);
         }
+    }
+
+    static void fitPageBreakToPage(ExcelWorksheet ws, List<string> userList)
+    {
+        //Remove all Page Breaks
+        for (int i = 1; i <= userList.Count + userList.Count / 3; i++)
+        {
+            ws.Row(i).PageBreak = false;
+            ws.Column(i).PageBreak = false;
+        }
+
+        //Create a page break at the end of every page
+        //Delete the Blank row (i) as it creates an empty row
+        //WARNING: If anything is resized then you'll likely have to update these values to fit everything again
+        for (int i = 40; i <= userList.Count + userList.Count / 3; i += 40 )
+        {
+            ws.Row(i).PageBreak = true;
+            ws.DeleteRow(i);
+        }
+
+        ws.Column(3).PageBreak = true;
+    }
+
+    static void AddPageHeaders(ExcelWorksheet ws, string className)
+    {
+        ws.HeaderFooter.AlignWithMargins = false;
+        ws.HeaderFooter.EvenHeader.CenteredText = "&28&\"Arial,Regular Bold\"" + className;
+        ws.HeaderFooter.OddHeader.CenteredText = "&28&\"Arial,Regular Bold\"" + className;
+
+    }
+
+    static void HeaderContentGap(ExcelWorksheet ws, List<string> userList)
+    {
+        for (int i = 1; i <= userList.Count + userList.Count / 3; i+=40)
+        {
+            ws.InsertRow(i, 1);
+        }
+       
+    }
+
+    static void WorkSheetProperties(ExcelWorksheet ws)
+    {
+        ws.View.PageLayoutView = true;
     }
 
     public static void FileExists(FileInfo outputDirectory, string outputString)
