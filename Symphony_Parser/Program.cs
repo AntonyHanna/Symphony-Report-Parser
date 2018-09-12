@@ -37,7 +37,6 @@ class Test
 
     public static void ReadReport(string reportPath, FileInfo outputDirectory, string outputString, string className)
     {
-
         List<string> usersList = new List<string>();
 
         using (StreamReader sr = new StreamReader(reportPath))
@@ -48,9 +47,7 @@ class Test
             {
                 if (unsplitUser.Contains("|"))
                 {
-
                     string[] splitUser = unsplitUser.Split(new char[] { '|' }, StringSplitOptions.RemoveEmptyEntries);
-
 
                     foreach (string data in splitUser)
                     {
@@ -61,7 +58,6 @@ class Test
                 }
             }
             Console.WriteLine("Data has been read!");
-
         }
         FileExists(outputDirectory, outputString);
         WriteToFile(outputDirectory, usersList, className);
@@ -70,7 +66,6 @@ class Test
 
     public static void WriteToFile(FileInfo outputDirectory, List<string> usersList, string className)
     {
-
         using (ExcelPackage excel = new ExcelPackage(outputDirectory))
         {
             Console.WriteLine("File is being created.");
@@ -82,7 +77,6 @@ class Test
             ws.Column(2).Width = 26.50;
             ws.Column(3).Width = 26.50;
             ws.Cells["A:Z"].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
-
 
             //Function for Automatically writing data to an excel file
             int idRow = 1; //Row in which the user ID is contained
@@ -115,15 +109,14 @@ class Test
                 rowCounter++;
                 idRow = idRow + 4;
             }
-
             Whitespace();
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("{0} user(s) written to file.",usersList.Count/3);
             Console.ForegroundColor = ConsoleColor.White;
 
+            HeaderContentGap(ws, usersList);
             fitPageBreakToPage(ws, usersList);
             AddPageHeaders(ws, className);
-            HeaderContentGap(ws, usersList);
             WorkSheetProperties(ws);
 
             excel.SaveAs(outputDirectory);
@@ -153,10 +146,9 @@ class Test
 
     static void AddPageHeaders(ExcelWorksheet ws, string className)
     {
-        ws.HeaderFooter.AlignWithMargins = false;
-        ws.HeaderFooter.EvenHeader.CenteredText = "&28&\"Arial,Regular Bold\"" + className;
-        ws.HeaderFooter.OddHeader.CenteredText = "&28&\"Arial,Regular Bold\"" + className;
-
+        ws.HeaderFooter.AlignWithMargins = true;
+        ws.HeaderFooter.EvenHeader.CenteredText = "&28&\"Arial,Regular Bold\"" + className + " - Barcodes";
+        ws.HeaderFooter.OddHeader.CenteredText = "&28&\"Arial,Regular Bold\"" + className + " - Barcodes";
     }
 
     static void HeaderContentGap(ExcelWorksheet ws, List<string> userList)
@@ -165,7 +157,6 @@ class Test
         {
             ws.InsertRow(i, 1);
         }
-       
     }
 
     static void WorkSheetProperties(ExcelWorksheet ws)
@@ -177,7 +168,22 @@ class Test
     {
         if (outputDirectory.Exists)
         {
-            File.Delete(outputString);
+            try
+            {
+                File.Delete(outputString);
+            }
+
+            catch(Exception ex)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine(ex.Message);
+                Console.ForegroundColor = ConsoleColor.White;
+                Console.WriteLine("Please close the the Worksheet before trying to run this program.");
+                Whitespace();
+                Console.WriteLine("Press any key to exit!");
+                Console.Read();
+                Environment.Exit(1);
+            }
         }
     }
 
