@@ -8,3 +8,13 @@ D:\Documents\Projects\Symphony_Parser\Symphony_Parser\Symphony_Parser\obj\Debug\
 D:\Documents\Projects\Symphony_Parser\Symphony_Parser\Symphony_Parser\obj\Debug\Symphony_Parser.csproj.CopyComplete
 D:\Documents\Projects\Symphony_Parser\Symphony_Parser\Symphony_Parser\obj\Debug\Symphony_Parser.exe
 D:\Documents\Projects\Symphony_Parser\Symphony_Parser\Symphony_Parser\obj\Debug\Symphony_Parser.pdb
+D:\Documents\Projects\Symphony_Parser\Symphony_Parser\bin\Debug\Symphony_Parser.exe.config
+D:\Documents\Projects\Symphony_Parser\Symphony_Parser\bin\Debug\Symphony_Parser.exe
+D:\Documents\Projects\Symphony_Parser\Symphony_Parser\bin\Debug\Symphony_Parser.pdb
+D:\Documents\Projects\Symphony_Parser\Symphony_Parser\bin\Debug\EPPlus.dll
+D:\Documents\Projects\Symphony_Parser\Symphony_Parser\bin\Debug\EPPlus.xml
+D:\Documents\Projects\Symphony_Parser\Symphony_Parser\obj\Debug\Symphony_Parser.csprojAssemblyReference.cache
+D:\Documents\Projects\Symphony_Parser\Symphony_Parser\obj\Debug\Symphony_Parser.csproj.CoreCompileInputs.cache
+D:\Documents\Projects\Symphony_Parser\Symphony_Parser\obj\Debug\Symphony_Parser.csproj.CopyComplete
+D:\Documents\Projects\Symphony_Parser\Symphony_Parser\obj\Debug\Symphony_Parser.exe
+D:\Documents\Projects\Symphony_Parser\Symphony_Parser\obj\Debug\Symphony_Parser.pdb
