@@ -1,29 +1,19 @@
 ﻿using System;
 using System.IO;
+using System.Threading;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Microsoft.Win32;
 using OfficeOpenXml;
 using OfficeOpenXml.Style;
 
 namespace Symphony_Parser_GUI_
 {
-    public partial class Form1 : Form
+    public partial class Symphony_Barcode_Generator : Form
     {
-        public Form1()
+        public Symphony_Barcode_Generator()
         {
             InitializeComponent();
-        }
-
-        private void exitButton_Click(object sender, EventArgs e)
-        {
-            Environment.Exit(1);
         }
 
         private void reportDirectoryBrowseButton_Click(object sender, EventArgs e)
@@ -68,20 +58,72 @@ namespace Symphony_Parser_GUI_
 
         private void generateButton_Click(object sender, EventArgs e)
         {
-            string className = gradeTextBox.Text;
+
+            if (string.IsNullOrWhiteSpace(classTextBox.Text) || string.IsNullOrWhiteSpace(fileDirectoryTextBox.Text) || string.IsNullOrWhiteSpace(outputDirectoryTextBox.Text))
+            {
+                if (string.IsNullOrWhiteSpace(classTextBox.Text))
+                {
+                    classErrorLabel.ForeColor = Color.Red;
+                    if (string.IsNullOrWhiteSpace(classErrorLabel.Text))
+                    {
+                        classErrorLabel.Text = "* Do not leave class name empty!";
+                        classErrorLabel.Refresh();
+
+                    }
+                }
+
+                if (string.IsNullOrWhiteSpace(fileDirectoryTextBox.Text))
+                {
+                    fileDirectoryErrorLabel.ForeColor = Color.Red;
+                    if (string.IsNullOrWhiteSpace(fileDirectoryErrorLabel.Text))
+                    {
+                        fileDirectoryErrorLabel.Text = "* Do not leave file location empty!";
+                        fileDirectoryErrorLabel.Refresh();
+
+                    }
+                }
+
+                if (string.IsNullOrWhiteSpace(outputDirectoryTextBox.Text))
+                {
+                    outputDirectoryErrorLabel.ForeColor = Color.Red;
+                    if (string.IsNullOrWhiteSpace(outputDirectoryErrorLabel.Text))
+                    {
+                        outputDirectoryErrorLabel.Text = "* Do not leave output location empty!";
+                        outputDirectoryErrorLabel.Refresh();
+
+                    }
+                }
+            }
+
+            MessageBox.Show("Please don't leave any fields empty!");
+
+            string className = classTextBox.Text;
             string filePath = fileDirectoryTextBox.Text;
             string outputString = outputDirectoryTextBox.Text;
             string outputDirectory = outputString + className + " - " + DateTime.Now.ToString("dddd, dd MMMM yyyy") + ".xlsx";
             FileInfo outputFilePath = new FileInfo(outputDirectory);
-            Start(filePath, outputFilePath, outputDirectory, className, outputDirectoryErrorLabel);
+            Start(filePath, outputFilePath, outputDirectory, className, outputDirectoryErrorLabel, fileDirectoryErrorLabel, classErrorLabel, statusOutputLabel, studentLabelCounter);
+
+            statusOutputLabel.Text = "Preparing Sheet";
+            statusOutputLabel.Refresh();
+            Thread.Sleep(5000);
+
+            statusOutputLabel.Text = "Finished!";
+            statusOutputLabel.Refresh();
+            Thread.Sleep(5000);
+
+            statusOutputLabel.Text = "Waiting to continue";
+            statusOutputLabel.Refresh();
         }
 
-        static void Start(string filePath, FileInfo outputFilePath, string outputDirectory, string className, Label outputDirectoryErrorLabel)
+        static void Start(string filePath, FileInfo outputFilePath, string outputDirectory, string className, 
+                            Label outputDirectoryErrorLabel, Label fileDirectoryErrorLabel, Label classErrorLabel, Label statusOutputLabel, Label studentLabelCounter)
         {
-            ReadReport(filePath, outputFilePath, outputDirectory, className, outputDirectoryErrorLabel);
+            ReadReport(filePath, outputFilePath, outputDirectory, className, outputDirectoryErrorLabel, fileDirectoryErrorLabel, classErrorLabel, statusOutputLabel, studentLabelCounter);
         }
 
-        public static void ReadReport(string reportPath, FileInfo outputDirectory, string outputString, string className, Label outputDirectoryErrorLabel)
+        public static void ReadReport(string reportPath, FileInfo outputDirectory, string outputString, string className, 
+                                        Label outputDirectoryErrorLabel, Label fileDirectoryErrorLabel, Label classErrorLabel, Label statusOutputLabel, Label studentLabelCounter)
         {
             List<string> usersList = new List<string>();
 
@@ -101,32 +143,33 @@ namespace Symphony_Parser_GUI_
                             {
                                 string cleanedString = System.Text.RegularExpressions.Regex.Replace(data, @"\s{2,}", "");
                                 usersList.Add(cleanedString);
-                                Console.WriteLine(data);
+                                statusOutputLabel.Text = data;
                             }
                         }
                     }
-                    Console.WriteLine("Data has been read!");
+                    statusOutputLabel.Text = "Data has been read!";
+                    statusOutputLabel.Refresh();
                 }
-                FileExists(outputDirectory, outputString);
-                WriteToFile(outputDirectory, usersList, className);
+                FileExists(outputDirectory, outputString, statusOutputLabel);
+                WriteToFile(outputDirectory, usersList, className, statusOutputLabel, studentLabelCounter);
             }
 
-            catch(ArgumentException ex)
+            catch
             {
-                MessageBox.Show("Output Location cannot be left empty!");
-                outputDirectoryErrorLabel.Text = "";
+              
                 return;
             }
-            
         }
 
-        public static void WriteToFile(FileInfo outputDirectory, List<string> usersList, string className)
+        public static void WriteToFile(FileInfo outputDirectory, List<string> usersList, string className, Label statusOutputLabel, Label studentLabelCounter)
         {
             using (ExcelPackage excel = new ExcelPackage(outputDirectory))
             {
-                Console.WriteLine("File is being created.");
+                statusOutputLabel.Text = "File is being created.";
+                statusOutputLabel.Refresh();
                 var ws = excel.Workbook.Worksheets.Add("Barcode Report");
-                Console.WriteLine("Users are being written to file.");
+                statusOutputLabel.Text = "Users are being written to file.";
+                statusOutputLabel.Refresh();
 
                 //Page Formatting
                 ws.Column(1).Width = 26.50;
@@ -164,22 +207,26 @@ namespace Symphony_Parser_GUI_
                     Row++;
                     rowCounter++;
                     idRow = idRow + 4;
+                    statusOutputLabel.Text = data;
+                    statusOutputLabel.Refresh();
                 }
                 Whitespace();
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.WriteLine("{0} user(s) written to file.", usersList.Count / 3);
-                Console.ForegroundColor = ConsoleColor.White;
 
-                HeaderContentGap(ws, usersList);
-                fitPageBreakToPage(ws, usersList);
-                AddPageHeaders(ws, className);
-                WorkSheetProperties(ws);
+                string stringUsers = (usersList.Count / 3).ToString();
+                //Console.WriteLine("{0} user(s) written to file.", usersList.Count / 3);
+                studentLabelCounter.Text = stringUsers;
+                studentLabelCounter.Refresh();
+
+                HeaderContentGap(ws, usersList, statusOutputLabel);
+                fitPageBreakToPage(ws, usersList, statusOutputLabel);
+                AddPageHeaders(ws, className, statusOutputLabel);
+                WorkSheetProperties(ws, statusOutputLabel);
 
                 excel.SaveAs(outputDirectory);
             }
         }
 
-        static void fitPageBreakToPage(ExcelWorksheet ws, List<string> userList)
+        static void fitPageBreakToPage(ExcelWorksheet ws, List<string> userList, Label statusOutputLabel)
         {
             //Remove all Page Breaks
             for (int i = 1; i <= userList.Count + userList.Count / 3; i++)
@@ -200,14 +247,14 @@ namespace Symphony_Parser_GUI_
             ws.Column(3).PageBreak = true;
         }
 
-        static void AddPageHeaders(ExcelWorksheet ws, string className)
+        static void AddPageHeaders(ExcelWorksheet ws, string className, Label statusOutputLabel)
         {
             ws.HeaderFooter.AlignWithMargins = true;
             ws.HeaderFooter.EvenHeader.CenteredText = "&28&\"Arial,Regular Bold\"" + className + " - Barcodes";
             ws.HeaderFooter.OddHeader.CenteredText = "&28&\"Arial,Regular Bold\"" + className + " - Barcodes";
         }
 
-        static void HeaderContentGap(ExcelWorksheet ws, List<string> userList)
+        static void HeaderContentGap(ExcelWorksheet ws, List<string> userList, Label statusOutputLabel)
         {
             for (int i = 1; i <= userList.Count + userList.Count / 3; i += 40)
             {
@@ -215,14 +262,14 @@ namespace Symphony_Parser_GUI_
             }
         }
 
-        static void WorkSheetProperties(ExcelWorksheet ws)
+        static void WorkSheetProperties(ExcelWorksheet ws, Label statusOutputLabel)
         {
             ws.View.PageLayoutView = true;
         }
 
-        public static void FileExists(FileInfo outputDirectory, string outputString)
+        public static void FileExists(FileInfo outputDirectory, string outputString, Label statusOutputLabel)
         {
-            //Needs to be Modified to work with WPF
+            
             if (outputDirectory.Exists)
             {
                 try
@@ -230,16 +277,10 @@ namespace Symphony_Parser_GUI_
                     File.Delete(outputString);
                 }
 
-                catch (Exception ex)
+                catch
                 {
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine(ex.Message);
-                    Console.ForegroundColor = ConsoleColor.White;
-                    Console.WriteLine("Please close the the Worksheet before trying to run this program.");
-                    Whitespace();
-                    Console.WriteLine("Press any key to exit!");
-                    Console.Read();
-                    Environment.Exit(1);
+                    statusOutputLabel.Text = "Please close the the Worksheet before trying to run this program.";
+                    statusOutputLabel.Refresh();
                 }
             }
         }
@@ -254,7 +295,7 @@ namespace Symphony_Parser_GUI_
             Console.Clear();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void Symphony_Barcode_Generator_Load(object sender, EventArgs e)
         {
 
         }
