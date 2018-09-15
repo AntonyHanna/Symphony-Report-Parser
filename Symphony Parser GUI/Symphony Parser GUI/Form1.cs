@@ -58,6 +58,9 @@ namespace Symphony_Parser_GUI_
 
         private void generateButton_Click(object sender, EventArgs e)
         {
+            classErrorLabel.Text = " ";
+            fileDirectoryErrorLabel.Text = " ";
+            outputDirectoryErrorLabel.Text = " ";
 
             if (string.IsNullOrWhiteSpace(classTextBox.Text) || string.IsNullOrWhiteSpace(fileDirectoryTextBox.Text) || string.IsNullOrWhiteSpace(outputDirectoryTextBox.Text))
             {
@@ -68,7 +71,6 @@ namespace Symphony_Parser_GUI_
                     {
                         classErrorLabel.Text = "* Do not leave class name empty!";
                         classErrorLabel.Refresh();
-
                     }
                 }
 
@@ -79,7 +81,6 @@ namespace Symphony_Parser_GUI_
                     {
                         fileDirectoryErrorLabel.Text = "* Do not leave file location empty!";
                         fileDirectoryErrorLabel.Refresh();
-
                     }
                 }
 
@@ -90,30 +91,31 @@ namespace Symphony_Parser_GUI_
                     {
                         outputDirectoryErrorLabel.Text = "* Do not leave output location empty!";
                         outputDirectoryErrorLabel.Refresh();
-
                     }
                 }
-            }
 
-            MessageBox.Show("Please don't leave any fields empty!");
+                MessageBox.Show("Please don't leave any fields empty!");
+                return;
+            }
 
             string className = classTextBox.Text;
             string filePath = fileDirectoryTextBox.Text;
             string outputString = outputDirectoryTextBox.Text;
             string outputDirectory = outputString + className + " - " + DateTime.Now.ToString("dddd, dd MMMM yyyy") + ".xlsx";
             FileInfo outputFilePath = new FileInfo(outputDirectory);
-            Start(filePath, outputFilePath, outputDirectory, className, outputDirectoryErrorLabel, fileDirectoryErrorLabel, classErrorLabel, statusOutputLabel, studentLabelCounter);
 
             statusOutputLabel.Text = "Preparing Sheet";
             statusOutputLabel.Refresh();
-            Thread.Sleep(5000);
 
-            statusOutputLabel.Text = "Finished!";
-            statusOutputLabel.Refresh();
-            Thread.Sleep(5000);
+            Start(filePath, outputFilePath, outputDirectory, className, outputDirectoryErrorLabel, fileDirectoryErrorLabel, classErrorLabel, statusOutputLabel, studentLabelCounter);
+
+            MessageBox.Show("Barcode Report has been generated." +Environment.NewLine + 
+                "Report can be found in " + outputFilePath);
 
             statusOutputLabel.Text = "Waiting to continue";
             statusOutputLabel.Refresh();
+
+            
         }
 
         static void Start(string filePath, FileInfo outputFilePath, string outputDirectory, string className, 
@@ -160,7 +162,7 @@ namespace Symphony_Parser_GUI_
                 return;
             }
         }
-
+        
         public static void WriteToFile(FileInfo outputDirectory, List<string> usersList, string className, Label statusOutputLabel, Label studentLabelCounter)
         {
             using (ExcelPackage excel = new ExcelPackage(outputDirectory))
@@ -212,13 +214,12 @@ namespace Symphony_Parser_GUI_
                 }
                 Whitespace();
 
-                string stringUsers = (usersList.Count / 3).ToString();
-                //Console.WriteLine("{0} user(s) written to file.", usersList.Count / 3);
-                studentLabelCounter.Text = stringUsers;
+                studentLabelCounter.Text = (usersList.Count / 3).ToString();
                 studentLabelCounter.Refresh();
 
-                HeaderContentGap(ws, usersList, statusOutputLabel);
                 fitPageBreakToPage(ws, usersList, statusOutputLabel);
+                HeaderContentGap(ws, usersList, statusOutputLabel);
+                
                 AddPageHeaders(ws, className, statusOutputLabel);
                 WorkSheetProperties(ws, statusOutputLabel);
 
@@ -249,9 +250,9 @@ namespace Symphony_Parser_GUI_
 
         static void AddPageHeaders(ExcelWorksheet ws, string className, Label statusOutputLabel)
         {
-            ws.HeaderFooter.AlignWithMargins = true;
-            ws.HeaderFooter.EvenHeader.CenteredText = "&28&\"Arial,Regular Bold\"" + className + " - Barcodes";
-            ws.HeaderFooter.OddHeader.CenteredText = "&28&\"Arial,Regular Bold\"" + className + " - Barcodes";
+           // ws.HeaderFooter.AlignWithMargins = true;
+           // ws.HeaderFooter.EvenHeader.CenteredText = "&28&\"Arial,Regular Bold\"" + className + " - Barcodes";
+           // ws.HeaderFooter.OddHeader.CenteredText = "&28&\"Arial,Regular Bold\"" + className + " - Barcodes";
         }
 
         static void HeaderContentGap(ExcelWorksheet ws, List<string> userList, Label statusOutputLabel)
