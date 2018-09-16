@@ -93,9 +93,8 @@ namespace Symphony_Parser_GUI_
                         outputDirectoryErrorLabel.Refresh();
                     }
                 }
-
-                MessageBox.Show("Please don't leave any fields empty!");
-                return;
+                    MessageBox.Show("Please don't leave any fields empty!");
+                    return;
             }
 
             string className = classTextBox.Text;
@@ -109,8 +108,7 @@ namespace Symphony_Parser_GUI_
 
             Start(filePath, outputFilePath, outputDirectory, className, outputDirectoryErrorLabel, fileDirectoryErrorLabel, classErrorLabel, statusOutputLabel, studentLabelCounter);
 
-            MessageBox.Show("Barcode Report has been generated." +Environment.NewLine + 
-                "Report can be found in " + outputFilePath);
+            MessageBox.Show("Barcode Report has been generated.");
 
             statusOutputLabel.Text = "Waiting to continue";
             statusOutputLabel.Refresh();
@@ -158,7 +156,6 @@ namespace Symphony_Parser_GUI_
 
             catch
             {
-              
                 return;
             }
         }
@@ -218,8 +215,6 @@ namespace Symphony_Parser_GUI_
                 studentLabelCounter.Refresh();
 
                 fitPageBreakToPage(ws, usersList, statusOutputLabel);
-                HeaderContentGap(ws, usersList, statusOutputLabel);
-                
                 AddPageHeaders(ws, className, statusOutputLabel);
                 WorkSheetProperties(ws, statusOutputLabel);
 
@@ -236,13 +231,15 @@ namespace Symphony_Parser_GUI_
                 ws.Column(i).PageBreak = false;
             }
 
+            //Header to Content Gap
+            ws.InsertRow(1, 1);
+
             //Create a page break at the end of every page
             //Delete the Blank row (i) as it creates an empty row
             //WARNING: If anything is resized then you'll likely have to update these values to fit everything again
-            for (int i = 40; i <= userList.Count + userList.Count / 3; i += 40)
+            for (int i = 36; i <= userList.Count + userList.Count / 3; i += 36)
             {
-                ws.Row(i).PageBreak = true;
-                ws.DeleteRow(i);
+                ws.Row(i).PageBreak = true;   
             }
 
             ws.Column(3).PageBreak = true;
@@ -250,22 +247,24 @@ namespace Symphony_Parser_GUI_
 
         static void AddPageHeaders(ExcelWorksheet ws, string className, Label statusOutputLabel)
         {
-           // ws.HeaderFooter.AlignWithMargins = true;
-           // ws.HeaderFooter.EvenHeader.CenteredText = "&28&\"Arial,Regular Bold\"" + className + " - Barcodes";
-           // ws.HeaderFooter.OddHeader.CenteredText = "&28&\"Arial,Regular Bold\"" + className + " - Barcodes";
-        }
-
-        static void HeaderContentGap(ExcelWorksheet ws, List<string> userList, Label statusOutputLabel)
-        {
-            for (int i = 1; i <= userList.Count + userList.Count / 3; i += 40)
-            {
-                ws.InsertRow(i, 1);
-            }
+           ws.HeaderFooter.AlignWithMargins = true;
+           ws.HeaderFooter.EvenHeader.CenteredText = "&28&\"Arial,Regular Bold\"" + className + " - Barcodes";
+           ws.HeaderFooter.OddHeader.CenteredText = "&28&\"Arial,Regular Bold\"" + className + " - Barcodes";
         }
 
         static void WorkSheetProperties(ExcelWorksheet ws, Label statusOutputLabel)
         {
             ws.View.PageLayoutView = true;
+            ws.PrinterSettings.PaperSize = ePaperSize.A4;
+            ws.PrinterSettings.FitToPage = false;
+
+            //Wide Margins
+            ws.PrinterSettings.LeftMargin = 1m;
+            ws.PrinterSettings.RightMargin = 1m;
+            ws.PrinterSettings.TopMargin = 1m;
+            ws.PrinterSettings.BottomMargin = 1m;
+            ws.PrinterSettings.HeaderMargin = .65m;
+            ws.PrinterSettings.FooterMargin = .65m;
         }
 
         public static void FileExists(FileInfo outputDirectory, string outputString, Label statusOutputLabel)
@@ -280,9 +279,8 @@ namespace Symphony_Parser_GUI_
 
                 catch
                 {
-                    statusOutputLabel.Text = "Please close the the Worksheet before trying to run this program.";
-                    statusOutputLabel.Refresh();
-                }
+                    MessageBox.Show("Please close down the excel sheet before trying to generate more barcodes.");
+                }  
             }
         }
 
