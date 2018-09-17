@@ -1,11 +1,11 @@
 ﻿using System;
 using System.IO;
-using System.Threading;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
 using OfficeOpenXml;
 using OfficeOpenXml.Style;
+
 
 namespace Symphony_Parser_GUI_
 {
@@ -14,6 +14,7 @@ namespace Symphony_Parser_GUI_
         public Symphony_Barcode_Generator()
         {
             InitializeComponent();
+
         }
 
         private void reportDirectoryBrowseButton_Click(object sender, EventArgs e)
@@ -93,7 +94,7 @@ namespace Symphony_Parser_GUI_
                         outputDirectoryErrorLabel.Refresh();
                     }
                 }
-                    MessageBox.Show("Please don't leave any fields empty!");
+                System.Windows.MessageBox.Show("Please don't leave any fields empty!");
                     return;
             }
 
@@ -108,7 +109,7 @@ namespace Symphony_Parser_GUI_
 
             Start(filePath, outputFilePath, outputDirectory, className, outputDirectoryErrorLabel, fileDirectoryErrorLabel, classErrorLabel, statusOutputLabel, studentLabelCounter);
 
-            MessageBox.Show("Barcode Report has been generated.");
+            System.Windows.MessageBox.Show("Barcode Report has been generated.");
 
             statusOutputLabel.Text = "Waiting to continue";
             statusOutputLabel.Refresh();
@@ -279,7 +280,7 @@ namespace Symphony_Parser_GUI_
 
                 catch
                 {
-                    MessageBox.Show("Please close down the excel sheet before trying to generate more barcodes.");
+                    System.Windows.MessageBox.Show("Please close down the excel sheet before trying to generate more barcodes.");
                 }  
             }
         }
@@ -294,9 +295,33 @@ namespace Symphony_Parser_GUI_
             Console.Clear();
         }
 
-        private void Symphony_Barcode_Generator_Load(object sender, EventArgs e)
+        public void Symphony_Barcode_Generator_Load(object sender, EventArgs e)
         {
+          
+        }
 
+        private bool mouseDown;
+        private Point lastLocation;
+
+        private void Symphony_Barcode_Generator_MouseDown(object sender, MouseEventArgs e)
+        {
+            mouseDown = true;
+            lastLocation = e.Location;
+        }
+
+        private void Symphony_Barcode_Generator_MouseMove(object sender, MouseEventArgs e)
+        {
+            if(mouseDown)
+            {
+                this.Location = new Point((this.Location.X - lastLocation.X) + e.X,
+                                          (this.Location.Y - lastLocation.Y) + e.Y);
+                this.Update();
+            }
+        }
+
+        private void Symphony_Barcode_Generator_MouseUp(object sender, MouseEventArgs e)
+        {
+            mouseDown = false;
         }
     }
 }

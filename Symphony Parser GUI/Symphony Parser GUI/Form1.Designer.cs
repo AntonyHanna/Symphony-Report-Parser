@@ -247,11 +247,14 @@
             this.Controls.Add(this.ReportDirectoryLabel);
             this.Controls.Add(this.fileDirectoryTextBox);
             this.Controls.Add(this.label1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Symphony_Barcode_Generator";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Workflows Barcode Generator";
             this.Load += new System.EventHandler(this.Symphony_Barcode_Generator_Load);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Symphony_Barcode_Generator_MouseDown);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Symphony_Barcode_Generator_MouseMove);
+            this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Symphony_Barcode_Generator_MouseUp);
             this.ResumeLayout(false);
             this.PerformLayout();
 
