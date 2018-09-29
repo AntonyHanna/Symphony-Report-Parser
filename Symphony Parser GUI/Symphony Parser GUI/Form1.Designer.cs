@@ -187,6 +187,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(41, 1);
             this.label1.TabIndex = 24;
+            this.label1.Visible = false;
             // 
             // settings_Button
             // 
@@ -198,6 +199,7 @@
             this.settings_Button.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.settings_Button.TabIndex = 23;
             this.settings_Button.TabStop = false;
+            this.settings_Button.Visible = false;
             // 
             // label3
             // 
