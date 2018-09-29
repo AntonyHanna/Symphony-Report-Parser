@@ -17,7 +17,7 @@ namespace Symphony_Parser_GUI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Symphony_Barcode_Generator());
+            Application.Run(new Barcode_Generator());
 
         }
     }

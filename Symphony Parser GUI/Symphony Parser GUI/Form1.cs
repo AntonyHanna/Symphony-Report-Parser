@@ -9,15 +9,14 @@ using OfficeOpenXml.Style;
 
 namespace Symphony_Parser_GUI_
 {
-    public partial class Symphony_Barcode_Generator : Form
+    public partial class Barcode_Generator : Form
     {
-        public Symphony_Barcode_Generator()
+        public Barcode_Generator()
         {
             InitializeComponent();
-
         }
 
-        private void reportDirectoryBrowseButton_Click(object sender, EventArgs e)
+        private void reportLocation_Button_Click(object sender, EventArgs e)
         {
             Microsoft.Win32.OpenFileDialog dialog = new Microsoft.Win32.OpenFileDialog();
 
@@ -29,16 +28,11 @@ namespace Symphony_Parser_GUI_
             if(result == true)
             {
                 string fileName = dialog.FileName;
-                fileDirectoryTextBox.Text = fileName;
+                reportLocation_TextBox.Text = fileName;
             }
         }
 
-        private void fileDirectoryTextBox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void outputDirectoryBrowse_Click(object sender, EventArgs e)
+        private void outputLocation_Button_Click(object sender, EventArgs e)
         {
             using (var fbd = new FolderBrowserDialog())
             {
@@ -47,14 +41,9 @@ namespace Symphony_Parser_GUI_
                 if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
                 {
                     string folderPath = fbd.SelectedPath + @"\";
-                    outputDirectoryTextBox.Text = fbd.SelectedPath + @"\";
+                    outputLocation_TextBox.Text = fbd.SelectedPath + @"\";
                 }
             }   
-        }
-
-        private void outputDirectoryTextBox_TextChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void generateButton_Click(object sender, EventArgs e)
@@ -63,9 +52,9 @@ namespace Symphony_Parser_GUI_
             fileDirectoryErrorLabel.Text = " ";
             outputDirectoryErrorLabel.Text = " ";
 
-            if (string.IsNullOrWhiteSpace(classTextBox.Text) || string.IsNullOrWhiteSpace(fileDirectoryTextBox.Text) || string.IsNullOrWhiteSpace(outputDirectoryTextBox.Text))
+            if (string.IsNullOrWhiteSpace(class_TextBox.Text) || string.IsNullOrWhiteSpace(reportLocation_TextBox.Text) || string.IsNullOrWhiteSpace(outputLocation_TextBox.Text))
             {
-                if (string.IsNullOrWhiteSpace(classTextBox.Text))
+                if (string.IsNullOrWhiteSpace(class_TextBox.Text))
                 {
                     classErrorLabel.ForeColor = Color.Red;
                     if (string.IsNullOrWhiteSpace(classErrorLabel.Text))
@@ -75,7 +64,7 @@ namespace Symphony_Parser_GUI_
                     }
                 }
 
-                if (string.IsNullOrWhiteSpace(fileDirectoryTextBox.Text))
+                if (string.IsNullOrWhiteSpace(reportLocation_TextBox.Text))
                 {
                     fileDirectoryErrorLabel.ForeColor = Color.Red;
                     if (string.IsNullOrWhiteSpace(fileDirectoryErrorLabel.Text))
@@ -85,7 +74,7 @@ namespace Symphony_Parser_GUI_
                     }
                 }
 
-                if (string.IsNullOrWhiteSpace(outputDirectoryTextBox.Text))
+                if (string.IsNullOrWhiteSpace(outputLocation_TextBox.Text))
                 {
                     outputDirectoryErrorLabel.ForeColor = Color.Red;
                     if (string.IsNullOrWhiteSpace(outputDirectoryErrorLabel.Text))
@@ -98,21 +87,21 @@ namespace Symphony_Parser_GUI_
                     return;
             }
 
-            string className = classTextBox.Text;
-            string filePath = fileDirectoryTextBox.Text;
-            string outputString = outputDirectoryTextBox.Text;
+            string className = class_TextBox.Text;
+            string filePath = reportLocation_TextBox.Text;
+            string outputString = outputLocation_TextBox.Text;
             string outputDirectory = outputString + className + " - " + DateTime.Now.ToString("dddd, dd MMMM yyyy") + ".xlsx";
             FileInfo outputFilePath = new FileInfo(outputDirectory);
 
-            statusOutputLabel.Text = "Preparing Sheet";
-            statusOutputLabel.Refresh();
+            statusOutput_Label.Text = "Preparing Sheet";
+            statusOutput_Label.Refresh();
 
-            Start(filePath, outputFilePath, outputDirectory, className, outputDirectoryErrorLabel, fileDirectoryErrorLabel, classErrorLabel, statusOutputLabel, studentLabelCounter);
+            Start(filePath, outputFilePath, outputDirectory, className, outputDirectoryErrorLabel, fileDirectoryErrorLabel, classErrorLabel, statusOutput_Label, studentOnFileResult_Label);
 
             System.Windows.MessageBox.Show("Barcode Report has been generated.");
 
-            statusOutputLabel.Text = "Waiting to continue";
-            statusOutputLabel.Refresh();
+            statusOutput_Label.Text = "Waiting to continue";
+            statusOutput_Label.Refresh();
 
             
         }
@@ -323,5 +312,13 @@ namespace Symphony_Parser_GUI_
         {
             mouseDown = false;
         }
+
+        private void exit_Button_Click(object sender, EventArgs e)
+        {
+            Environment.Exit(1);
+        }
     }
 }
+
+
+

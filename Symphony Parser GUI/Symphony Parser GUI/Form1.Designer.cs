@@ -1,6 +1,6 @@
 ﻿namespace Symphony_Parser_GUI_
 {
-    partial class Symphony_Barcode_Generator
+    partial class Barcode_Generator
     {
         /// <summary>
         /// Required designer variable.
@@ -29,99 +29,106 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.label1 = new System.Windows.Forms.Label();
-            this.fileDirectoryTextBox = new System.Windows.Forms.TextBox();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Barcode_Generator));
+            this.title_Label = new System.Windows.Forms.Label();
+            this.reportLocation_TextBox = new System.Windows.Forms.TextBox();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.ReportDirectoryLabel = new System.Windows.Forms.Label();
-            this.reportDirectoryBrowseButton = new System.Windows.Forms.Button();
-            this.outputDirectoryBrowse = new System.Windows.Forms.Button();
-            this.outputDirectoryLabel = new System.Windows.Forms.Label();
-            this.outputDirectoryTextBox = new System.Windows.Forms.TextBox();
+            this.reportLocation_Label = new System.Windows.Forms.Label();
+            this.reportLocation_Button = new System.Windows.Forms.Button();
+            this.outputLocation_Button = new System.Windows.Forms.Button();
+            this.outputLocation_Label = new System.Windows.Forms.Label();
+            this.outputLocation_TextBox = new System.Windows.Forms.TextBox();
             this.generateButton = new System.Windows.Forms.Button();
-            this.gradeLabel = new System.Windows.Forms.Label();
-            this.classTextBox = new System.Windows.Forms.TextBox();
+            this.class_Label = new System.Windows.Forms.Label();
+            this.class_TextBox = new System.Windows.Forms.TextBox();
             this.outputDirectoryErrorLabel = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label1 = new System.Windows.Forms.Label();
+            this.settings_Button = new System.Windows.Forms.PictureBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.exit_Button = new System.Windows.Forms.PictureBox();
             this.fileDirectoryErrorLabel = new System.Windows.Forms.Label();
             this.classErrorLabel = new System.Windows.Forms.Label();
-            this.statusLabel = new System.Windows.Forms.Label();
-            this.statusOutputLabel = new System.Windows.Forms.Label();
-            this.studentsLabel = new System.Windows.Forms.Label();
-            this.studentLabelCounter = new System.Windows.Forms.Label();
+            this.status_Label = new System.Windows.Forms.Label();
+            this.statusOutput_Label = new System.Windows.Forms.Label();
+            this.studentsOnFile_Label = new System.Windows.Forms.Label();
+            this.studentOnFileResult_Label = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.settings_Button)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.exit_Button)).BeginInit();
             this.SuspendLayout();
             // 
-            // label1
+            // title_Label
             // 
-            this.label1.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.Gray;
-            this.label1.Location = new System.Drawing.Point(8, 13);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(237, 21);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Symphony Barcode Generator";
+            this.title_Label.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.title_Label.ForeColor = System.Drawing.Color.Gray;
+            this.title_Label.Location = new System.Drawing.Point(8, 9);
+            this.title_Label.Name = "title_Label";
+            this.title_Label.Size = new System.Drawing.Size(237, 21);
+            this.title_Label.TabIndex = 0;
+            this.title_Label.Text = "Symphony Barcode Generator";
             // 
-            // fileDirectoryTextBox
+            // reportLocation_TextBox
             // 
-            this.fileDirectoryTextBox.Location = new System.Drawing.Point(12, 143);
-            this.fileDirectoryTextBox.Name = "fileDirectoryTextBox";
-            this.fileDirectoryTextBox.Size = new System.Drawing.Size(211, 20);
-            this.fileDirectoryTextBox.TabIndex = 1;
-            this.fileDirectoryTextBox.TextChanged += new System.EventHandler(this.fileDirectoryTextBox_TextChanged);
+            this.reportLocation_TextBox.Location = new System.Drawing.Point(12, 143);
+            this.reportLocation_TextBox.Name = "reportLocation_TextBox";
+            this.reportLocation_TextBox.Size = new System.Drawing.Size(211, 20);
+            this.reportLocation_TextBox.TabIndex = 1;
             // 
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(61, 4);
             // 
-            // ReportDirectoryLabel
+            // reportLocation_Label
             // 
-            this.ReportDirectoryLabel.AutoSize = true;
-            this.ReportDirectoryLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ReportDirectoryLabel.Location = new System.Drawing.Point(12, 124);
-            this.ReportDirectoryLabel.Name = "ReportDirectoryLabel";
-            this.ReportDirectoryLabel.Size = new System.Drawing.Size(98, 13);
-            this.ReportDirectoryLabel.TabIndex = 4;
-            this.ReportDirectoryLabel.Text = "Report Location";
+            this.reportLocation_Label.AutoSize = true;
+            this.reportLocation_Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.reportLocation_Label.Location = new System.Drawing.Point(12, 124);
+            this.reportLocation_Label.Name = "reportLocation_Label";
+            this.reportLocation_Label.Size = new System.Drawing.Size(98, 13);
+            this.reportLocation_Label.TabIndex = 4;
+            this.reportLocation_Label.Text = "Report Location";
             // 
-            // reportDirectoryBrowseButton
+            // reportLocation_Button
             // 
-            this.reportDirectoryBrowseButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.reportDirectoryBrowseButton.Location = new System.Drawing.Point(229, 141);
-            this.reportDirectoryBrowseButton.Name = "reportDirectoryBrowseButton";
-            this.reportDirectoryBrowseButton.Size = new System.Drawing.Size(75, 23);
-            this.reportDirectoryBrowseButton.TabIndex = 5;
-            this.reportDirectoryBrowseButton.Text = "Browse";
-            this.reportDirectoryBrowseButton.UseVisualStyleBackColor = true;
-            this.reportDirectoryBrowseButton.Click += new System.EventHandler(this.reportDirectoryBrowseButton_Click);
+            this.reportLocation_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.reportLocation_Button.Location = new System.Drawing.Point(229, 141);
+            this.reportLocation_Button.Name = "reportLocation_Button";
+            this.reportLocation_Button.Size = new System.Drawing.Size(75, 23);
+            this.reportLocation_Button.TabIndex = 5;
+            this.reportLocation_Button.Text = "Browse";
+            this.reportLocation_Button.UseVisualStyleBackColor = true;
+            this.reportLocation_Button.Click += new System.EventHandler(this.reportLocation_Button_Click);
             // 
-            // outputDirectoryBrowse
+            // outputLocation_Button
             // 
-            this.outputDirectoryBrowse.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.outputDirectoryBrowse.Location = new System.Drawing.Point(229, 213);
-            this.outputDirectoryBrowse.Name = "outputDirectoryBrowse";
-            this.outputDirectoryBrowse.Size = new System.Drawing.Size(75, 23);
-            this.outputDirectoryBrowse.TabIndex = 8;
-            this.outputDirectoryBrowse.Text = "Browse";
-            this.outputDirectoryBrowse.UseVisualStyleBackColor = true;
-            this.outputDirectoryBrowse.Click += new System.EventHandler(this.outputDirectoryBrowse_Click);
+            this.outputLocation_Button.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.outputLocation_Button.Location = new System.Drawing.Point(229, 213);
+            this.outputLocation_Button.Name = "outputLocation_Button";
+            this.outputLocation_Button.Size = new System.Drawing.Size(75, 23);
+            this.outputLocation_Button.TabIndex = 8;
+            this.outputLocation_Button.Text = "Browse";
+            this.outputLocation_Button.UseVisualStyleBackColor = true;
+            this.outputLocation_Button.Click += new System.EventHandler(this.outputLocation_Button_Click);
             // 
-            // outputDirectoryLabel
+            // outputLocation_Label
             // 
-            this.outputDirectoryLabel.AutoSize = true;
-            this.outputDirectoryLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.outputDirectoryLabel.Location = new System.Drawing.Point(12, 196);
-            this.outputDirectoryLabel.Name = "outputDirectoryLabel";
-            this.outputDirectoryLabel.Size = new System.Drawing.Size(98, 13);
-            this.outputDirectoryLabel.TabIndex = 7;
-            this.outputDirectoryLabel.Text = "Output Location";
+            this.outputLocation_Label.AutoSize = true;
+            this.outputLocation_Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.outputLocation_Label.Location = new System.Drawing.Point(12, 196);
+            this.outputLocation_Label.Name = "outputLocation_Label";
+            this.outputLocation_Label.Size = new System.Drawing.Size(98, 13);
+            this.outputLocation_Label.TabIndex = 7;
+            this.outputLocation_Label.Text = "Output Location";
             // 
-            // outputDirectoryTextBox
+            // outputLocation_TextBox
             // 
-            this.outputDirectoryTextBox.Location = new System.Drawing.Point(12, 215);
-            this.outputDirectoryTextBox.Name = "outputDirectoryTextBox";
-            this.outputDirectoryTextBox.Size = new System.Drawing.Size(211, 20);
-            this.outputDirectoryTextBox.TabIndex = 6;
-            this.outputDirectoryTextBox.TextChanged += new System.EventHandler(this.outputDirectoryTextBox_TextChanged);
+            this.outputLocation_TextBox.Location = new System.Drawing.Point(12, 215);
+            this.outputLocation_TextBox.Name = "outputLocation_TextBox";
+            this.outputLocation_TextBox.Size = new System.Drawing.Size(211, 20);
+            this.outputLocation_TextBox.TabIndex = 6;
             // 
             // generateButton
             // 
@@ -134,22 +141,22 @@
             this.generateButton.UseVisualStyleBackColor = true;
             this.generateButton.Click += new System.EventHandler(this.generateButton_Click);
             // 
-            // gradeLabel
+            // class_Label
             // 
-            this.gradeLabel.AutoSize = true;
-            this.gradeLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gradeLabel.Location = new System.Drawing.Point(12, 56);
-            this.gradeLabel.Name = "gradeLabel";
-            this.gradeLabel.Size = new System.Drawing.Size(37, 13);
-            this.gradeLabel.TabIndex = 11;
-            this.gradeLabel.Text = "Class";
+            this.class_Label.AutoSize = true;
+            this.class_Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.class_Label.Location = new System.Drawing.Point(12, 56);
+            this.class_Label.Name = "class_Label";
+            this.class_Label.Size = new System.Drawing.Size(37, 13);
+            this.class_Label.TabIndex = 11;
+            this.class_Label.Text = "Class";
             // 
-            // classTextBox
+            // class_TextBox
             // 
-            this.classTextBox.Location = new System.Drawing.Point(12, 75);
-            this.classTextBox.Name = "classTextBox";
-            this.classTextBox.Size = new System.Drawing.Size(120, 20);
-            this.classTextBox.TabIndex = 10;
+            this.class_TextBox.Location = new System.Drawing.Point(12, 75);
+            this.class_TextBox.Name = "class_TextBox";
+            this.class_TextBox.Size = new System.Drawing.Size(120, 20);
+            this.class_TextBox.TabIndex = 10;
             // 
             // outputDirectoryErrorLabel
             // 
@@ -163,11 +170,54 @@
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.panel2.Controls.Add(this.label1);
+            this.panel2.Controls.Add(this.settings_Button);
+            this.panel2.Controls.Add(this.label3);
+            this.panel2.Controls.Add(this.exit_Button);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel2.Location = new System.Drawing.Point(373, 0);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(55, 412);
             this.panel2.TabIndex = 14;
+            // 
+            // label1
+            // 
+            this.label1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label1.Location = new System.Drawing.Point(7, 90);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(41, 1);
+            this.label1.TabIndex = 24;
+            // 
+            // settings_Button
+            // 
+            this.settings_Button.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.settings_Button.Image = ((System.Drawing.Image)(resources.GetObject("settings_Button.Image")));
+            this.settings_Button.Location = new System.Drawing.Point(18, 60);
+            this.settings_Button.Name = "settings_Button";
+            this.settings_Button.Size = new System.Drawing.Size(19, 18);
+            this.settings_Button.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.settings_Button.TabIndex = 23;
+            this.settings_Button.TabStop = false;
+            // 
+            // label3
+            // 
+            this.label3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.label3.Location = new System.Drawing.Point(7, 45);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(41, 1);
+            this.label3.TabIndex = 22;
+            // 
+            // exit_Button
+            // 
+            this.exit_Button.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.exit_Button.Image = ((System.Drawing.Image)(resources.GetObject("exit_Button.Image")));
+            this.exit_Button.Location = new System.Drawing.Point(11, 7);
+            this.exit_Button.Name = "exit_Button";
+            this.exit_Button.Size = new System.Drawing.Size(34, 34);
+            this.exit_Button.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.exit_Button.TabIndex = 21;
+            this.exit_Button.TabStop = false;
+            this.exit_Button.Click += new System.EventHandler(this.exit_Button_Click);
             // 
             // fileDirectoryErrorLabel
             // 
@@ -187,100 +237,117 @@
             this.classErrorLabel.TabIndex = 16;
             this.classErrorLabel.Text = " ";
             // 
-            // statusLabel
+            // status_Label
             // 
-            this.statusLabel.AutoSize = true;
-            this.statusLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.statusLabel.Location = new System.Drawing.Point(12, 308);
-            this.statusLabel.Name = "statusLabel";
-            this.statusLabel.Size = new System.Drawing.Size(51, 13);
-            this.statusLabel.TabIndex = 17;
-            this.statusLabel.Text = "Status: ";
+            this.status_Label.AutoSize = true;
+            this.status_Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.status_Label.Location = new System.Drawing.Point(12, 308);
+            this.status_Label.Name = "status_Label";
+            this.status_Label.Size = new System.Drawing.Size(51, 13);
+            this.status_Label.TabIndex = 17;
+            this.status_Label.Text = "Status: ";
             // 
-            // statusOutputLabel
+            // statusOutput_Label
             // 
-            this.statusOutputLabel.AutoSize = true;
-            this.statusOutputLabel.Location = new System.Drawing.Point(57, 308);
-            this.statusOutputLabel.Name = "statusOutputLabel";
-            this.statusOutputLabel.Size = new System.Drawing.Size(84, 13);
-            this.statusOutputLabel.TabIndex = 18;
-            this.statusOutputLabel.Text = "Waiting to begin";
+            this.statusOutput_Label.AutoSize = true;
+            this.statusOutput_Label.Location = new System.Drawing.Point(57, 308);
+            this.statusOutput_Label.Name = "statusOutput_Label";
+            this.statusOutput_Label.Size = new System.Drawing.Size(84, 13);
+            this.statusOutput_Label.TabIndex = 18;
+            this.statusOutput_Label.Text = "Waiting to begin";
             // 
-            // studentsLabel
+            // studentsOnFile_Label
             // 
-            this.studentsLabel.AutoSize = true;
-            this.studentsLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.studentsLabel.Location = new System.Drawing.Point(12, 264);
-            this.studentsLabel.Name = "studentsLabel";
-            this.studentsLabel.Size = new System.Drawing.Size(107, 13);
-            this.studentsLabel.TabIndex = 19;
-            this.studentsLabel.Text = "Students on File: ";
+            this.studentsOnFile_Label.AutoSize = true;
+            this.studentsOnFile_Label.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.studentsOnFile_Label.Location = new System.Drawing.Point(12, 264);
+            this.studentsOnFile_Label.Name = "studentsOnFile_Label";
+            this.studentsOnFile_Label.Size = new System.Drawing.Size(107, 13);
+            this.studentsOnFile_Label.TabIndex = 19;
+            this.studentsOnFile_Label.Text = "Students on File: ";
             // 
-            // studentLabelCounter
+            // studentOnFileResult_Label
             // 
-            this.studentLabelCounter.AutoSize = true;
-            this.studentLabelCounter.Location = new System.Drawing.Point(109, 264);
-            this.studentLabelCounter.Name = "studentLabelCounter";
-            this.studentLabelCounter.Size = new System.Drawing.Size(10, 13);
-            this.studentLabelCounter.TabIndex = 20;
-            this.studentLabelCounter.Text = " ";
+            this.studentOnFileResult_Label.AutoSize = true;
+            this.studentOnFileResult_Label.Location = new System.Drawing.Point(109, 264);
+            this.studentOnFileResult_Label.Name = "studentOnFileResult_Label";
+            this.studentOnFileResult_Label.Size = new System.Drawing.Size(10, 13);
+            this.studentOnFileResult_Label.TabIndex = 20;
+            this.studentOnFileResult_Label.Text = " ";
             // 
-            // Symphony_Barcode_Generator
+            // label2
+            // 
+            this.label2.Location = new System.Drawing.Point(0, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(100, 23);
+            this.label2.TabIndex = 1;
+            // 
+            // Barcode_Generator
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(428, 412);
-            this.Controls.Add(this.studentLabelCounter);
-            this.Controls.Add(this.studentsLabel);
-            this.Controls.Add(this.statusOutputLabel);
-            this.Controls.Add(this.statusLabel);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.title_Label);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.studentOnFileResult_Label);
+            this.Controls.Add(this.studentsOnFile_Label);
+            this.Controls.Add(this.statusOutput_Label);
+            this.Controls.Add(this.status_Label);
             this.Controls.Add(this.classErrorLabel);
             this.Controls.Add(this.fileDirectoryErrorLabel);
-            this.Controls.Add(this.panel2);
             this.Controls.Add(this.outputDirectoryErrorLabel);
-            this.Controls.Add(this.gradeLabel);
-            this.Controls.Add(this.classTextBox);
+            this.Controls.Add(this.class_Label);
+            this.Controls.Add(this.class_TextBox);
             this.Controls.Add(this.generateButton);
-            this.Controls.Add(this.outputDirectoryBrowse);
-            this.Controls.Add(this.outputDirectoryLabel);
-            this.Controls.Add(this.outputDirectoryTextBox);
-            this.Controls.Add(this.reportDirectoryBrowseButton);
-            this.Controls.Add(this.ReportDirectoryLabel);
-            this.Controls.Add(this.fileDirectoryTextBox);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.outputLocation_Button);
+            this.Controls.Add(this.outputLocation_Label);
+            this.Controls.Add(this.outputLocation_TextBox);
+            this.Controls.Add(this.reportLocation_Button);
+            this.Controls.Add(this.reportLocation_Label);
+            this.Controls.Add(this.reportLocation_TextBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "Symphony_Barcode_Generator";
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Name = "Barcode_Generator";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Workflows Barcode Generator";
+            this.Text = "WorkFlows Barcode Generator";
             this.Load += new System.EventHandler(this.Symphony_Barcode_Generator_Load);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Symphony_Barcode_Generator_MouseDown);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Symphony_Barcode_Generator_MouseMove);
             this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Symphony_Barcode_Generator_MouseUp);
+            this.panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.settings_Button)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.exit_Button)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox fileDirectoryTextBox;
+        private System.Windows.Forms.Label title_Label;
+        private System.Windows.Forms.TextBox reportLocation_TextBox;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.Label ReportDirectoryLabel;
-        private System.Windows.Forms.Button reportDirectoryBrowseButton;
-        private System.Windows.Forms.Button outputDirectoryBrowse;
-        private System.Windows.Forms.Label outputDirectoryLabel;
-        private System.Windows.Forms.TextBox outputDirectoryTextBox;
+        private System.Windows.Forms.Label reportLocation_Label;
+        private System.Windows.Forms.Button reportLocation_Button;
+        private System.Windows.Forms.Button outputLocation_Button;
+        private System.Windows.Forms.Label outputLocation_Label;
+        private System.Windows.Forms.TextBox outputLocation_TextBox;
         private System.Windows.Forms.Button generateButton;
-        private System.Windows.Forms.Label gradeLabel;
-        private System.Windows.Forms.TextBox classTextBox;
+        private System.Windows.Forms.Label class_Label;
+        private System.Windows.Forms.TextBox class_TextBox;
 
         private System.Windows.Forms.Label outputDirectoryErrorLabel;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label fileDirectoryErrorLabel;
         private System.Windows.Forms.Label classErrorLabel;
-        private System.Windows.Forms.Label statusLabel;
-        private System.Windows.Forms.Label statusOutputLabel;
-        private System.Windows.Forms.Label studentsLabel;
-        private System.Windows.Forms.Label studentLabelCounter;
+        private System.Windows.Forms.Label status_Label;
+        private System.Windows.Forms.Label statusOutput_Label;
+        private System.Windows.Forms.Label studentsOnFile_Label;
+        private System.Windows.Forms.Label studentOnFileResult_Label;
+        private System.Windows.Forms.PictureBox exit_Button;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.PictureBox settings_Button;
+        private System.Windows.Forms.Label label1;
     }
 }
 
