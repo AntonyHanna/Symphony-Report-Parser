@@ -2,6 +2,10 @@
 Project - Symphony Text Parser (Windows)
 ======
 
+Notice
+--------
+Development of this program is currently on hiatus. Work on this program will commence some time in the future
+
 Project Outline
 ------
 Staff have complained about the Mac version of the Symphony Report to Barcode Program. This app even though made for windows will serve as a guidline for developing the macOS version of this app.
